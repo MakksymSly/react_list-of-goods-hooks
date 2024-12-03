@@ -20,11 +20,12 @@ export const goodsFromServer = [
 enum SortType {
   length = 'length',
   alph = 'alph',
+  default = '',
 }
 
 export const App = () => {
   const [isReversed, setIsReversed] = useState(false);
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState(SortType.default);
 
   const reverseList = () => {
     if (isReversed) {
@@ -36,7 +37,7 @@ export const App = () => {
 
   const resetList = () => {
     setIsReversed(false);
-    setSortType('');
+    setSortType(SortType.default);
   };
 
   const prepearedListOfGoods = [...goodsFromServer];
@@ -64,7 +65,7 @@ export const App = () => {
         <button
           type="button"
           className={`button is-info ${cn({ 'is-light': sortType !== 'alph' })}`}
-          onClick={() => setSortType('alph')}
+          onClick={() => setSortType(SortType.alph)}
         >
           Sort alphabetically
         </button>
@@ -72,7 +73,7 @@ export const App = () => {
         <button
           type="button"
           className={`button is-success ${cn({ 'is-light': sortType !== 'length' })}`}
-          onClick={() => setSortType('length')}
+          onClick={() => setSortType(SortType.length)}
         >
           Sort by length
         </button>
